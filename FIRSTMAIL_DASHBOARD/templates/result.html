@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты проверки</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <div class="header">
+
+            <h1>Результаты проверки</h1>
+
+            <a href="/" class="back-btn">
+                ← Назад
+            </a>
+
+        </div>
+
+        <p class="subtitle">
+            Сервис: {{ service }}
+        </p>
+
+        <table>
+
+            <thead>
+
+            <tr>
+                <th>Почта</th>
+                <th>Код</th>
+                <th>Отправитель</th>
+                <th>Тема</th>
+                <th>Время</th>
+                <th>Статус</th>
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for result in results %}
+
+            <tr>
+
+                <td>
+                    {{ result.email }}
+                </td>
+
+                <td class="code-cell">
+
+                    {% if result.code %}
+                        {{ result.code }}
+                    {% else %}
+                        —
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if result.sender %}
+                        {{ result.sender }}
+                    {% else %}
+                        —
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if result.subject %}
+                        {{ result.subject }}
+                    {% else %}
+                        —
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if result.date %}
+                        {{ result.date }}
+                    {% else %}
+                        —
+                    {% endif %}
+
+                </td>
+
+                <td>
+
+                    {% if result.status == "success" %}
+
+                        <span class="status success">
+                            Найден
+                        </span>
+
+                    {% elif result.status == "not_found" %}
+
+                        <span class="status warning">
+                            Не найден
+                        </span>
+
+                    {% else %}
+
+                        <span class="status error">
+                            Ошибка
+                        </span>
+
+                    {% endif %}
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>

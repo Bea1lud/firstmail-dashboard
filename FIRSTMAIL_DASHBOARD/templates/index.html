@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FirstMail Monitor</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="card">
+
+        <h1>FirstMail Monitor</h1>
+
+        <p class="subtitle">
+            Проверка кодов подтверждения через IMAP
+        </p>
+
+        <form action="/check" method="post">
+
+            <div class="form-group">
+
+                <label>
+                    Сервис
+                </label>
+
+                <select name="service">
+
+                    {% for service_id, service in services.items() %}
+
+                    <option value="{{ service_id }}">
+                        {{ service.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Аккаунты
+                </label>
+
+                <textarea
+                    name="accounts_text"
+                    rows="12"
+                    placeholder="mail1@firstmail.ltd:password&#10;mail2@firstmail.ltd:password"
+                    required
+                ></textarea>
+
+            </div>
+
+            <button
+                type="submit"
+                class="submit-btn"
+            >
+                Проверить
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
